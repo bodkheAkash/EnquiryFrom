@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-outline-primary mt-2" routerLink="/new-enquirey">Create New</button>
+        </div>
+    </div>
+    <div class="filter mt-2 bg-gradient">
+        <div class="row">
+            <h1 class="text-center">Filter The Data</h1>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col">
+                <input type="text" [(ngModel)]="filterObj.customerName" class="form-control" name="customerName" placeholder="Name" id="">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="filterObj.contactNo" name="contactNo" placeholder="Contact No" id="">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="filterObj.email" name="email" placeholder="Email" id="">
+            </div>
+            <div class="col">
+               <select class="form-select" [(ngModel)]="filterObj.enquiryStatusId" name="enquiryStatusId">
+                <option selected disabled>Select the Status</option>
+                @for (item of enquiryStatusList; track $index) {
+                 <option [value]="item.enquiryStatusId">{{item.enquiryStatus}}</option>
+                }
+               </select>
+            </div>
+            <div class="col"> 
+                <select class="form-select" [(ngModel)]="filterObj.enquirySubjectId" name="enquirySubjectId">
+                    <option selected disabled>Select the Subject</option>
+                    @for (item of enquirySubjectList; track $index) {
+                     <option [value]="item.enquirySubjectId">{{item.enquirySubject}}</option>
+                    }
+                </select>
+            </div>
+            </div>
+            <div class="row pt-2">
+            <div class="col">
+               From Date: <input type="date" class="form-control"  [(ngModel)]="filterObj.fromDate" name="fromDate" class="form-control" name="" placeholder="From Date" id="">
+            </div>
+            <div class="col">
+                To Date:<input type="date"class="form-control" name="" class="form-control" [(ngModel)]="filterObj.toDate" name="toDate" placeholder="To Date" id="">
+            </div>  
+            <div class="row">
+              <div class="col text-center"><button type="button" class="btn btn-primary m-2 text-center" (click)="filterData()">Filter</button>
+                <button type="button" class="btn btn-success" (click)="rest()">Reset</button>
+            </div>
+             
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @for (item of enquiryList; track $index) {
+            <div class="col-3 pt-1">
+                <div class="animate__animated animate bounce card ">
+                    <div class="container mt-3">
+                        <img src="https://i.ibb.co/gRpP2Lm/icons8-online-128.png" class="card-img-top " alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title ms-1">{{item.customerName}}</h5>
+                        <p class="card-text mb-1 ms-1">{{item.enquirySubject}}</p>
+    
+                        <a  target="_blank"
+                            class="btn btn-primary mb-1 mt-1 ">Open</a>
+                    </div>
+                </div>
+            </div>
+        }
+      
+      
+    </div>
+</div>
